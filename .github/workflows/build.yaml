@@ -9,12 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Node.js 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: "npm"
-
       - name: Checkout Quartz
         uses: actions/checkout@v4
 
@@ -25,6 +19,12 @@ jobs:
           path: content
           # token only needed if vault repo is private:
           # token: ${{ secrets.VAULT_TOKEN }}
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
 
       - name: Install + build
         run: |
