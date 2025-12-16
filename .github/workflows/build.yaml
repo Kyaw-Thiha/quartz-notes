@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Vault into content/
         uses: actions/checkout@v4
         with:
-          repository: YOUR_GH_USERNAME/YOUR_VAULT_REPO
+          repository: Kyaw-Thiha/Notes
           path: content
           # token only needed if vault repo is private:
           # token: ${{ secrets.VAULT_TOKEN }}
