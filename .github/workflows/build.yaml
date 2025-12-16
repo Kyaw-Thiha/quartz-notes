@@ -1,0 +1,26 @@
+name: Build Quartz from Vault
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Quartz
+        uses: actions/checkout@v4
+
+      - name: Checkout Vault into content/
+        uses: actions/checkout@v4
+        with:
+          repository: YOUR_GH_USERNAME/YOUR_VAULT_REPO
+          path: content
+          # token only needed if vault repo is private:
+          # token: ${{ secrets.VAULT_TOKEN }}
+
+      - name: Install + build
+        run: |
+          npm ci
+          npx quartz build
