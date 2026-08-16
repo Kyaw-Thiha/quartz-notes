@@ -52,6 +52,19 @@ export function byDateAndAlphabeticalFolderFirst(cfg: GlobalConfiguration): Sort
   }
 }
 
+export const alphabeticalFolderFirst: SortFn = (f1, f2) => {
+  // Sort folders first
+  const f1IsFolder = isFolderPath(f1.slug ?? "")
+  const f2IsFolder = isFolderPath(f2.slug ?? "")
+  if (f1IsFolder && !f2IsFolder) return -1
+  if (!f1IsFolder && f2IsFolder) return 1
+
+  // sort lexographically by title
+  const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
+  const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
+  return f1Title.localeCompare(f2Title)
+}
+
 type Props = {
   limit?: number
   sort?: SortFn
